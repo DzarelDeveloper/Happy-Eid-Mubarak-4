@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Idul Fitri Greeting Card</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@1,500&display=swap');
+
+body {
+    font-family: 'Newsreader', serif, cursive !important;
+    background: #fdfaee;
+    margin: 0px;
+    padding: 0px;
+}
+
+::selection {
+    background: transparent;
+}
+
+h4 {
+    font-size: 26px;
+    line-height: 1px;
+    font-family: 'Amatic SC', cursive !important;
+}
+
+.color1{color:#3a2a7e}
+.color2{color:#f37915}
+
+.card {
+    color: #18093b;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 400px;
+    background: #e0e1dc;
+    transform-style: preserve-3d;
+    transform: translate(-50%,-50%) perspective(2000px);
+    box-shadow: inset 300px 0 50px rgba(0,0,0,.2), 20px 0 60px rgba(0,0,0,.2);
+    transition: 2s;
+}
+
+.card:hover {
+    transform: translate(-50%,-50%) perspective(2000px) rotate(10deg) scale(1.2);
+    box-shadow: inset 20px 0 50px rgba(0,0,0,.5), 0 10px 100px rgba(0,0,0,.5);
+}
+
+.card:before {
+    content:'';
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #BAC1BA;
+    transform-origin: bottom;
+    transform: skewX(-45deg);
+}
+
+.card:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -5px;
+    width: 5px;
+    height: 100%;
+    background: #dfe0e0;
+    transform-origin: left;
+    transform: skewY(-45deg);
+}
+
+.card .imgBox {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-origin: left;
+    transition: .7s;
+}
+
+.card .bark {
+    position: absolute;
+    background: #e0e1dc;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: .7s;
+}
+
+.card .imgBox img {
+    min-width: 250px;
+    max-height: 400px;
+}
+
+.card:hover .imgBox {
+    transform: rotateY(-135deg);
+}
+
+.card:hover .bark {
+    opacity: 1;
+    transition: .6s;
+    box-shadow: 300px 200px 100px rgba(0, 0, 0, .4) inset;
+}
+
+.card .details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 0 0 0 10px;
+    z-index: -1;
+    margin-top: 20px;
+}
+
+.card .details p {
+    font-size: 13px;
+    line-height: 5px;
+    padding: 0 0 0 45px;
+}
+
+.card .details h4 {
+    text-align: center;
+    padding: 0 0 0 45px;
+}
+
+.text-right {
+    text-align: right;
+}
+</style>
+</head>
+<body>
+<div class="card">
+    <div class="imgBox">
+        <div class="bark"></div>
+        <a href="Card"><img src="Card.jpg" alt="kartu-ucapan-idul-fitri" border="0"></a>
+    </div>
+    <div class="details">
+        <h4 class="color1">Selamat Hari Raya</h4> 
+        <h4 class="color2 margin">Idul Fitri 1445 H</h4>
+        <p>Minal Aidzin Wal Faidzin</p>
+        <p>Mohon Maaf Lahir dan Batin.</p>
+
+        <p>Maka, maafkanlah atas segala</p>
+        <p>kesalahan baik yang disengaja,</p>
+        <p>maupun yang tak disengaja</p>
+        <p>Taqabbalallahu minna wa minkum</p>
+        <br>
+        <p>Jika Kita Tidak Sempat Bertemu</p>
+        <p>THR via transfer pun jadi.</p> 
+        <p class="text-right"><a href="THR.html" class="text-right">-Kirim-</a></p>
+    </div> 
+</div>
+</body>
+</html>

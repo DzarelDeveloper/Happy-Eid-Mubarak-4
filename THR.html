@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en"> 
+ <head>
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>THR VIA TRANSFER</title> 
+  <style>
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+body {
+  font-family: 'Montserrat';
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.overflow {
+  height: 100vh;
+  overflow: hidden;
+}
+.panels {
+  width: 200%;
+}
+.panels__side {
+  float: left;
+  width: 50%;
+  perspective: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.panels__side--left,
+.panels__side--right {
+  will-change: transform;
+  position: relative;
+  left: -25%;
+  transform: translate(0, 0);
+}
+.panels__side--left {
+  background: #00FF00;
+}
+.panels__side--left:hover .arrow {
+  transform: translate(-100%, -50%);
+}
+.panels__side--right {
+  background: #19b5fe;
+}
+.panels__side--right:hover .arrow {
+  transform: translate(0, -50%);
+}
+.panels__side--left-active {
+  transform: translate(50%, 0);
+}
+.panels__side--left-active .panels__side--inner-left {
+  transform: rotateY(0);
+}
+.panels__side--left-active .arrow {
+  transform: translate(-50%, -50%) rotate(180deg) !important;
+}
+.panels__side--right-active {
+  transform: translate(-50%, 0);
+}
+.panels__side--right-active .panels__side--inner-right {
+  transform: rotateY(0);
+}
+.panels__side--right-active .arrow {
+  transform: translate(-50%, -50%) rotate(180deg) !important;
+}
+.panels__side--left-hidden {
+  transform: translate(-50%, 0);
+}
+.panels__side--right-hidden {
+  transform: translate(50%, 0);
+}
+.panels__side--inner {
+  cursor: pointer;
+}
+.panels__side--inner-left,
+.panels__side--inner-right,
+.panels__side--inner {
+  will-change: transform;
+  padding: 0 5vw;
+  height: 100vh;
+}
+.panels__side--inner-left {
+  transform-origin: right center;
+  transform: rotateY(-90deg);
+  transition-delay: 0.1s;
+  background: url("unsplash.it/1330/900") center/cover;
+}
+.panels__side--inner-left:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #00FF00;
+  z-index: -1;
+  opacity: 0.85;
+}
+.panels__side--inner-right {
+  transform-origin: left center;
+  transform: rotateY(90deg);
+  transition-delay: 0.1s;
+  background: url("unsplash.it/1250/900") center/cover;
+}
+.panels__side--inner-right:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #19b5fe;
+  z-index: -1;
+  opacity: 0.85;
+}
+.panels__headline {
+  margin: 0;
+  font-size: 40px;
+  text-align: center;
+  color: #1a1a1a;
+}
+.panels p {
+  font-size: 30px;
+  margin: 0;
+}
+@media (max-width: 640px) {
+  .panels {
+    width: 100%;
+    height: 200vh;
+  }
+  .panels__side {
+    float: none;
+    width: 100%;
+    height: 100vh;
+    display: block;
+    text-align: center;
+  }
+  .panels__side--left,
+  .panels__side--right {
+    top: -25%;
+    left: 0;
+  }
+  .panels__side--left:hover .arrow {
+    transform: translate(-50%, -80%) rotate(90deg);
+  }
+  .panels__side--right:hover .arrow {
+    transform: translate(-50%, -20%) rotate(90deg);
+  }
+  .panels__side--left-active {
+    transform: translate(0, 50%);
+  }
+  .panels__side--left-active .panels__side--inner-left {
+    transform: rotateX(0);
+  }
+  .panels__side--left-active .arrow {
+    transform: translate(-50%, -50%) rotate(-90deg) !important;
+  }
+  .panels__side--right-active {
+    transform: translate(0, -50%);
+  }
+  .panels__side--right-active .panels__side--inner-right {
+    transform: rotateX(0);
+  }
+  .panels__side--right-active .arrow {
+    transform: translate(-50%, -50%) rotate(-90deg) !important;
+  }
+  .panels__side--left-hidden {
+    transform: translate(0, -50%);
+  }
+  .panels__side--right-hidden {
+    transform: translate(0, 50%);
+  }
+  .panels__side--inner-left,
+  .panels__side--inner-right,
+  .panels__side--inner {
+    height: 50vh;
+    padding: 2vh 8vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .panels__side--inner-left {
+    transform-origin: center bottom;
+    transform: rotateX(90deg);
+  }
+  .panels__side--inner-right {
+    transform-origin: center top;
+    transform: rotateX(-90deg);
+  }
+  .panels__headline {
+    font-size: 32px;
+  }
+  .panels p {
+    font-size: 20px;
+  }
+}
+.arrow {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  fill: #1a1a1a;
+  border: 3px solid #1a1a1a;
+  border-radius: 50%;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+@media (max-width: 640px) {
+  .arrow {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+  .arrow--left {
+    top: 25%;
+  }
+}
+.logo {
+  position: fixed;
+  bottom: 3vh;
+  right: 3vw;
+  z-index: 2;
+}
+.logo img {
+  width: 45px;
+  transform: rotate(0);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.logo img:hover {
+  transform: rotate(180deg) scale(1.1);
+}
+
+.panels__side--inner-left,
+.panels__side--inner-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.panels__side--inner-left img,
+.panels__side--inner-right img {
+  margin-bottom: 10px; /* Atur jarak antara gambar dan teks */
+}
+
+@media (max-width: 640px) {
+  .panels__side--inner-left img,
+  .panels__side--inner-right img {
+    margin-bottom: 0; /* Reset margin pada perangkat seluler */
+  }
+}
+
+</style>
+ </head> 
+ <body> 
+  <div class="overflow"> 
+   <section class="panels"> 
+    <article class="panels__side panels__side--left"> 
+     <div class="panels__side panels__side--inner-left">
+     <p>0882********</p>
+     <img src="https://raw.githubusercontent.com/DzarelDeveloper/Happy-Eid-Mubarak-2/main/Dana.jpg" alt="Dana" width="200" height="200">
+     <h3>Terimakasih Sudah Mau Kirim THR Nya✨</h3>
+   </div>
+     <div class="panels__side panels__side--inner"> 
+      <h1 class="panels__headline">Transfer Via Gopay</h1> 
+      <svg class="arrow arrow--left" width="40" height="40" viewbox="0 0 24 24">
+       <path d="M0 0h24v24h-24z" fill="none" /><path d="M20 11h-12.17l5.59-5.59-1.42-1.41-8 8 8 8 1.41-1.41-5.58-5.59h12.17v-2z" />
+      </svg> 
+     </div> 
+    </article> 
+    <article class="panels__side panels__side--right"> 
+     <div class="panels__side panels__side--inner"> 
+      <h1 class="panels__headline">Transfer Via Dana</h1> 
+      <svg class="arrow arrow--right" width="40" height="40" viewbox="0 0 24 24">
+       <path d="M0 0h24v24h-24z" fill="none" /><path d="M12 4l-1.41 1.41 5.58 5.59h-12.17v2h12.17l-5.58 5.59 1.41 1.41 8-8z" />
+      </svg> 
+     </div> 
+     <div class="panels__side panels__side--inner-right">
+     <p>0882********</p>
+  <img src="https://raw.githubusercontent.com/DzarelDeveloper/Happy-Eid-Mubarak-2/main/Dana.jpg" alt="Dana" width="200" height="200">
+  <h3>Terimakasih Sudah Mau Kirim THR Nya✨</h3>
+</div>
+    </article> 
+   </section> 
+  <script>
+let Panels = (function() {
+
+let panelLeft = document.querySelector('.panels__side--left');
+let panelRight = document.querySelector('.panels__side--right');
+
+let openLeft = function() {
+      panelLeft.classList.toggle('panels__side--left-active');
+  panelRight.classList.toggle('panels__side--right-hidden');
+};
+
+let openRight = function() {
+  panelRight.classList.toggle('panels__side--right-active');
+  panelLeft.classList.toggle('panels__side--left-hidden');
+};
+
+let bindActions = function() {
+  panelLeft.addEventListener('click', openLeft, false);
+  panelRight.addEventListener('click', openRight, false);
+};
+
+let init = function() {
+  bindActions();
+};
+
+return {
+  init: init
+};
+
+}());
+
+Panels.init();
+  </script> 
+ </body>
+</html>
